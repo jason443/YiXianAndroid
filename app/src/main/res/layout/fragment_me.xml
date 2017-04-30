@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/me_iv_avatar"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+
+        <TextView
+            android:layout_marginBottom="10dp"
+            android:id="@+id/me_tv_name"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:text="eleven"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/me_tv_gender"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            android:text="性别：男"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:background="@color/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1.0px"/>
+        <TextView
+            android:id="@+id/me_tv_age"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            android:text="年龄：11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:background="@color/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1.0px"/>
+        <TextView
+            android:id="@+id/me_tv_birthday"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            android:text="生日：7月11日"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:background="@color/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1.0px"/>
+        <TextView
+            android:id="@+id/me_tv_phone"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            android:text="手机：12345678911"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:background="@color/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1.0px"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/me_bt_back"
+        android:layout_marginTop="50dp"
+        android:textSize="18sp"
+        android:textColor="@color/gray1"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/green"
+        android:text="退出"
+        android:layout_width="match_parent"
+        android:layout_height="45dp" />
+
+</LinearLayout>

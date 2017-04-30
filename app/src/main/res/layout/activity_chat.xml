@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <include  android:id="@+id/layout_bar" layout="@layout/layout_title"/>
+    
+    <ListView
+        android:divider="@null"
+        android:id="@+id/chat_lv_msg"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"></ListView>
+
+    <LinearLayout
+
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="#aaffffff"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/btn_set_mode_voice"
+            android:layout_gravity="center"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/chatting_setmode_voice_btn"
+            android:onClick="setModeVoice"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/et_sendmessage"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dip"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:maxLines="3"
+            android:layout_gravity="center"
+            android:minHeight="40dp"
+            android:onClick="editClick"
+            android:paddingBottom="3dp"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:paddingTop="3dp"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/iv_emoticons_normal"
+            android:layout_width="28dip"
+            android:layout_height="28dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical|right"
+            android:layout_margin="1dip"
+            android:onClick="cleanDraw"
+            android:scaleType="fitCenter"
+            android:background="@drawable/type_chat_btn"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_more"
+            android:layout_width="28dip"
+            android:layout_height="28dip"
+            android:layout_marginLeft="4dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/type_select_btn"
+            android:onClick="more" />
+    </LinearLayout>
+</LinearLayout>

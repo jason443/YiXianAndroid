@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="bar_color">#232325</color>
+    <color name="white">#ffffff</color>
+    <color name="gray1">#ffefefef</color>
+    <color name="grey">#fff5f5f5</color>
+    <color name="grey2">#EAEBEA</color>
+    <color name="textColor">#808080</color>
+    <color name="green">#99cc33</color>
+    <color name="divider">#bfbfbf</color>
+    <color name="fake_while">#fdfdfd</color>
+</resources>

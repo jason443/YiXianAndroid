@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title"/>
+
+    <LinearLayout
+        android:padding="8dp"
+        android:id="@+id/label_ll_new_label"
+        android:background="@drawable/color_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:padding="10dp"
+            android:src="@drawable/add_label"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:textSize="17sp"
+            android:textColor="@color/green"
+            android:layout_gravity="center"
+            android:text="新建分组"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <View
+        android:background="@color/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1.0px"/>
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/label_lv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.baoyz.swipemenulistview.SwipeMenuListView>
+
+</LinearLayout>

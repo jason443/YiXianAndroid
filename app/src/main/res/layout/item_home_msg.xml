@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/color_selector"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_margin="10dp"
+        android:id="@+id/home_msg_iv_avatar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/home_msg_iv_avatar"
+        android:text="宝宝"
+        android:id="@+id/home_msg_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textColor="@color/divider"
+        android:text="大叔哈哈"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/home_msg_iv_avatar"
+        android:id="@+id/home_msg_tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textColor="@color/divider"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:text="20:20"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/home_msg_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
