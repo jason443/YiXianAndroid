@@ -10,10 +10,17 @@ import java.util.List;
 public class LabelBean implements Serializable{
 
 
+    public LabelBean(String name, List<MemberBean> member) {
+        this.name = name;
+        this.member = member;
+    }
+
     /**
      * name : 宝宝
      * member : [{"account":23549371}]
      */
+
+
 
     private String name;
     /**
@@ -39,13 +46,17 @@ public class LabelBean implements Serializable{
     }
 
     public static class MemberBean implements Serializable {
-        private int account;
+        private String account;
 
-        public int getAccount() {
+        public MemberBean(String account) {
+            this.account = account;
+        }
+
+        public String getAccount() {
             return account;
         }
 
-        public void setAccount(int account) {
+        public void setAccount(String account) {
             this.account = account;
         }
     }

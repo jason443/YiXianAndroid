@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jason.yixianandroid.R;
+import com.jason.yixianandroid.activity.FriendsDetailActivity;
 import com.jason.yixianandroid.bean.MsgBean;
 import com.jason.yixianandroid.manager.UserManager;
 import com.jason.yixianandroid.util.DataLoader;
@@ -57,8 +58,8 @@ public class ChatAdapter extends BaseAdapter {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        MsgBean msgBean = getItem(position);
+    public View getView(int position, View convertView, final ViewGroup parent) {
+        final MsgBean msgBean = getItem(position);
         ViewHolder viewHolder;
        if (convertView == null) {
            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_msg,parent,false);
@@ -76,23 +77,46 @@ public class ChatAdapter extends BaseAdapter {
            viewHolder = (ViewHolder) convertView.getTag();
        }
         if (getItemViewType(position) == MSG_SEND) {
-            viewHolder.mTvSendTime.setText(msgBean.getTime());
+            viewHolder.mSendLayout.setVisibility(View.VISIBLE);
+            viewHolder.mTvSendTime.setVisibility(View.VISIBLE);
+            if (msgBean.getTime() == null || msgBean.getTime().equals("")) {
+                viewHolder.mTvSendTime.setVisibility(View.GONE);
+            } else {
+                viewHolder.mTvSendTime.setText(msgBean.getTime());
+            }
             viewHolder.mTvSendContent.setText(msgBean.getContent());
             viewHolder.mReceiveLayout.setVisibility(View.GONE);
-            viewHolder.mTvReceiveTime.setVisibility(View.GONE);
             String avatar = DataLoader.getUser(msgBean.getMaster()).get头像();
             if (avatar != null) {
                 Glide.with(parent.getContext()).load("/sdcard/wechaterData/avatar/" + avatar).into(viewHolder.mIvSendAvatar);
             }
+            viewHolder.mIvSendAvatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FriendsDetailActivity.startActivity(msgBean.getMaster(),parent.getContext());
+                }
+            });
         } else {
+            viewHolder.mReceiveLayout.setVisibility(View.VISIBLE);
+            viewHolder.mTvReceiveTime.setVisibility(View.VISIBLE);
+            if (msgBean.getTime() == null || msgBean.getTime().equals("")) {
+                viewHolder.mTvReceiveTime.setVisibility(View.GONE);
+            } else {
+                viewHolder.mTvReceiveTime.setText(msgBean.getTime());
+            }
             viewHolder.mTvReceiveTime.setText(msgBean.getTime());
             viewHolder.mTvReceiveContent.setText(msgBean.getContent());
             viewHolder.mSendLayout.setVisibility(View.GONE);
-            viewHolder.mTvSendTime.setVisibility(View.GONE);
             String avatar = DataLoader.getUser(msgBean.getMaster()).get头像();
             if (avatar != null) {
                 Glide.with(parent.getContext()).load("/sdcard/wechaterData/avatar/" + avatar).into(viewHolder.mIvReceiveAvatar);
             }
+            viewHolder.mIvReceiveAvatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FriendsDetailActivity.startActivity(msgBean.getMaster(),parent.getContext());
+                }
+            });
         }
         return convertView;
     }

@@ -9,7 +9,9 @@ import com.jason.yixianandroid.bean.LabelBean;
 import com.jason.yixianandroid.bean.LoginBean;
 import com.jason.yixianandroid.bean.MsgBean;
 import com.jason.yixianandroid.bean.SaveChatBean;
+import com.jason.yixianandroid.bean.SaveLabelBean;
 import com.jason.yixianandroid.bean.UserBean;
+import com.jason.yixianandroid.manager.UserManager;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -51,6 +53,113 @@ public class DataLoader {
             e.printStackTrace();
         }
         return drawBean;
+    }
+
+    /*
+    * 修改标签的方法（指定位置）
+    * */
+    public static void changeLabel(LabelBean labelBeen, String account,int position) {
+        ArrayList<LabelBean> mList = (ArrayList<LabelBean>) getLabelList(account);
+        mList.get(position).setName(labelBeen.getName());
+        mList.get(position).setMember(labelBeen.getMember());
+        Gson gson = new Gson();
+        SaveLabelBean bean = new SaveLabelBean(mList);
+        String a = gson.toJson(bean);
+        Log.d(TAG, "addLabel: " + a);
+        String url = "/sdcard/wechaterData/" + account + "/label.txt";
+        File file = new File(url);
+        if (file.exists()) {
+            try {
+                FileWriter fw = new FileWriter(file,false);
+                fw.write(a);
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try {
+                if(file.createNewFile()) { //不在则创建
+                    FileWriter fw = new FileWriter(file,false);
+                    fw.write(a);
+                    fw.close();
+                } else {
+                    Log.d(TAG, "addChats: " + "无法创建文件！！");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.d(TAG, "addLabel: " + "修改成功");
+    }
+
+    /*
+    * 修改标签的方法
+    * */
+    public static void changeLabel(List<LabelBean> labelBeen, String account) {
+        Gson gson = new Gson();
+        SaveLabelBean bean = new SaveLabelBean(labelBeen);
+        String a = gson.toJson(bean);
+        Log.d(TAG, "addLabel: " + a);
+        String url = "/sdcard/wechaterData/" + account + "/label.txt";
+        File file = new File(url);
+        if (file.exists()) {
+            try {
+                FileWriter fw = new FileWriter(file,false);
+                fw.write(a);
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try {
+                if(file.createNewFile()) { //不在则创建
+                    FileWriter fw = new FileWriter(file,false);
+                    fw.write(a);
+                    fw.close();
+                } else {
+                    Log.d(TAG, "addChats: " + "无法创建文件！！");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.d(TAG, "addLabel: " + "修改成功");
+    }
+
+    /*
+    * 增加标签的方法
+    * */
+    public static void addLabel(LabelBean labelBean,String account) {
+        List<LabelBean> mList = getLabelList(account);
+        mList.add(labelBean);
+        Gson gson = new Gson();
+        SaveLabelBean bean = new SaveLabelBean(mList);
+        String a = gson.toJson(bean);
+        Log.d(TAG, "addLabel: " + a);
+        String url = "/sdcard/wechaterData/" + account + "/label.txt";
+        File file = new File(url);
+        if (file.exists()) {
+            try {
+                FileWriter fw = new FileWriter(file,false);
+                fw.write(a);
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try {
+                if(file.createNewFile()) { //不在则创建
+                    FileWriter fw = new FileWriter(file,false);
+                    fw.write(a);
+                    fw.close();
+                } else {
+                    Log.d(TAG, "addChats: " + "无法创建文件！！");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.d(TAG, "addLabel: " + "修改成功");
     }
 
     public static void addChats(String sender,String receiver,List<MsgBean> msg1Bean) {
@@ -129,6 +238,14 @@ public class DataLoader {
             e.printStackTrace();
         }
         return loginBeans;
+    }
+
+    public static List<UserBean> getUsersByMembers(List<LabelBean.MemberBean> accounts) {
+        List<UserBean> userBeanList = new ArrayList<>();
+        for (LabelBean.MemberBean s : accounts) {
+            userBeanList.add(getUser(s.getAccount()));
+        }
+        return userBeanList;
     }
 
     public static UserBean getUser(String userAccount) {

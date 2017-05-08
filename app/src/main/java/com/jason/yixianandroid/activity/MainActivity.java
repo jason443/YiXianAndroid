@@ -6,11 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jason.yixianandroid.R;
+import com.jason.yixianandroid.bean.ActionItem;
+import com.jason.yixianandroid.custom.TitlePopup;
 import com.jason.yixianandroid.fragment.FriendsFragment;
 import com.jason.yixianandroid.fragment.HomeFragment;
 import com.jason.yixianandroid.fragment.MeFragment;
@@ -32,6 +35,18 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private int index;
     private int currentTabIndex;// 当前fragment的index
     private UserManager mManager;
+    private TitlePopup mTitlePopup;
+    private TitlePopup.OnItemOnClickListener onitemClick = new TitlePopup.OnItemOnClickListener() {
+        @Override
+        public void onItemClick(ActionItem item, int position) {
+            switch(position) {
+                case 0: //设备通讯
+                    AddFriendActivity.startActivity(MainActivity.this);
+                    break;
+            }
+        }
+    };
+
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context,MainActivity.class);
@@ -46,6 +61,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         initViews();
         initTabView();
         loadData();
+        initTitlePopup();
+    }
+
+    private void initTitlePopup() {
+        mTitlePopup = new TitlePopup(this, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        mTitlePopup.setItemOnClickListener(onitemClick);
+        mTitlePopup.addAction(new ActionItem(this, "添加朋友",
+                R.drawable.icon_menu_addfriend));
     }
 
     private void loadData() {
@@ -96,6 +119,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.title_iv_right:
+                if (currentTabIndex == 1) {
+                    AddFriendActivity.startActivity(this);
+                } else {
+                    mTitlePopup.show(findViewById(R.id.layout_bar));
+                }
                 break;
             default:
         }

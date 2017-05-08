@@ -40,12 +40,24 @@
         <activity android:name=".activity.LabelActivity">
         </activity>
 
+        <!--新建标签-->
+        <activity android:name=".activity.NewLabelActivity">
+        </activity>
+
         <!--标签详情模块-->
         <activity android:name=".activity.LabelDetailActivity">
         </activity>
 
         <!--设备绘图模块-->
         <activity android:name=".activity.EquipmentActivity">
+        </activity>
+
+        <!--选择联系人模块-->
+        <activity android:name=".activity.AddMemberActivity">
+        </activity>
+
+        <!--添加朋友模块-->
+        <activity android:name=".activity.AddFriendActivity">
         </activity>
     </application>
 

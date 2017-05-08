@@ -9,33 +9,31 @@
 
     <TextView
         android:background="@color/grey"
-        android:text="分组名字"
         android:padding="10dp"
+        android:text="分组名字"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/label_detail_tv_name"
+        android:id="@+id/new_label_et_name"
         android:textColor="@color/bar_color"
-        android:textSize="18sp"
+        android:hint="未编辑分组名字"
         android:padding="10dp"
-        android:text="宝宝"
         android:background="@color/fake_while"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/label_detail_tv_member"
         android:background="@color/grey"
-        android:text="分组成员(0)"
         android:padding="10dp"
+        android:text="分组成员"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <LinearLayout
         android:onClick="onAdd"
         android:padding="15dp"
-        android:id="@+id/label_detail_ll_add_member"
+        android:id="@+id/new_label_ll_add"
         android:background="@drawable/color_selector"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -59,8 +57,9 @@
         android:layout_width="match_parent"
         android:layout_height="1.0px"/>
 
-    <com.baoyz.swipemenulistview.SwipeMenuListView
-        android:id="@+id/label_detail_lv_list"
+    <ListView
+        android:id="@+id/new_label_lv_select_member"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.baoyz.swipemenulistview.SwipeMenuListView>
+        android:layout_height="match_parent"></ListView>
+
 </LinearLayout>

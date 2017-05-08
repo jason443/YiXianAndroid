@@ -9,8 +9,21 @@ import com.jason.yixianandroid.util.ISort;
 public class UserBean implements ISort{
 
     /*
-    * 头像
+    * 账号
     * */
+    public String account;
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    /*
+            * 头像
+            * */
     private String 头像;
 
     public String get头像() {
