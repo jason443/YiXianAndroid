@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/selected_member_rl_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/color_selector"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:id="@+id/selected_member_iv_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:layout_toRightOf="@+id/selected_member_iv_avatar"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/selected_member_iv_avatar"
+        android:text="李强"
+        android:id="@+id/selected_member_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp" />
+
+    <Button
+        android:visibility="visible"
+        android:id="@+id/selected_member_bt_delete"
+        android:textColor="@color/white"
+        android:text="删除"
+        android:background="#F93F25"
+        android:layout_alignParentRight="true"
+        android:layout_width="60dp"
+        android:layout_height="50dp" />
+
+</RelativeLayout>

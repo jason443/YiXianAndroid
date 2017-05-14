@@ -32,6 +32,8 @@ public class DataLoader {
 
     private static String TAG = DataLoader.class.getSimpleName();
 
+
+
     public static DrawBean getDrawData(String filePath) {
         String url = "/sdcard/wechaterData/HMI绘图/" + filePath;
         File urlFile = new File(url);

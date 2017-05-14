@@ -21,6 +21,7 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.jason.yixianandroid.R;
+import com.jason.yixianandroid.adapter.LabelDetetailAdapter;
 import com.jason.yixianandroid.adapter.SelectedMemberAdapter;
 import com.jason.yixianandroid.bean.LabelBean;
 import com.jason.yixianandroid.bean.UserBean;
@@ -51,11 +52,12 @@ public class LabelDetailActivity extends Activity {
     private TextView mTvSave;
     private ImageView mIvBack;
     private SwipeMenuListView mLvList;
-    private SelectedMemberAdapter mAdapter;
+    private LabelDetetailAdapter mAdapter;
     private List<UserBean> mUserList;
     private SwipeMenuCreator mCreator;
+    private View mAddMemberView;
     private int mPosition; // 记录在数据中的位置
-    private boolean isChecking; // 判断是否在进行修改
+    private boolean isChecking = false; // 判断是否在进行修改
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,13 +91,19 @@ public class LabelDetailActivity extends Activity {
         if (mTvSave.getText().toString().equals("修改")) {
             mTvSave.setText("保存");
             isChecking = true;
+            mAddMemberView.setVisibility(View.VISIBLE);
+            mAdapter.setIsDelete(isChecking);
+            mAdapter.notifyDataSetChanged();
             mEtName.setFocusable(true);
             mEtName.setFocusableInTouchMode(true);
         } else {
             if (mEtName.getText().toString().equals("")) {
                 Toast.makeText(this,"分组名称不能为空",Toast.LENGTH_SHORT).show();
             } else {
+                mAddMemberView.setVisibility(View.GONE);
+                mAdapter.notifyDataSetChanged();
                 isChecking = false;
+                mAdapter.setIsDelete(isChecking);
                 mTvSave.setText("修改");
                 mEtName.setFocusable(false);
                 mEtName.setFocusableInTouchMode(false);
@@ -125,6 +133,7 @@ public class LabelDetailActivity extends Activity {
         mIvBack = (ImageView) findViewById(R.id.title_iv_left);
         mLvList = (SwipeMenuListView) findViewById(R.id.label_detail_lv_list);
         mTvSave = (TextView) findViewById(R.id.title_tv_right);
+        mAddMemberView = findViewById(R.id.label_detail_ll_add_member);
     }
 
     private void initData() {
@@ -136,47 +145,48 @@ public class LabelDetailActivity extends Activity {
     private void initView() {
         mEtName.setText(mLabel.getName());
         mTvMember.setText("分组成员" + "(" + mLabel.getMember().size() + ")");
-        mAdapter = new SelectedMemberAdapter(mUserList);
+        mAdapter = new LabelDetetailAdapter(mUserList,isChecking);
         mLvList.setAdapter(mAdapter);
-        mCreator = new SwipeMenuCreator() {
+        mAdapter.setDeleteListener(new LabelDetetailAdapter.DeleteButtonListener() {
             @Override
-            public void create(SwipeMenu menu) {
-                SwipeMenuItem deleteItem = new SwipeMenuItem(
-                        getBaseContext());
-                // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
-                // set item width
-                deleteItem.setWidth(Dp2PxUtil.dip2px(getBaseContext(),90));
-                // set a icon
-                deleteItem.setIcon(R.drawable.delete);
-                // add to menu
-                menu.addMenuItem(deleteItem);
-            }
-        };
-        mLvList.setMenuCreator(mCreator);
-        mLvList.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                switch (index) {
-                    case 0:
-                       if (isChecking) {
-                           mUserList.remove(mUserList.get(position));
-                           mAdapter.notifyDataSetChanged();
-                           mLabel.getMember().remove(mLabel.getMember().get(position));
-//                           DataLoader.changeLabel(mLabel,UserManager.getInstance().getLoginBean().getAccount()
-//                                   ,mPosition);
-//                           EventBus.getDefault().post(new LabelChangeEvent());
-                       } else {
-                           Toast.makeText(getBaseContext(),"请点击修改后进行修改操作",Toast.LENGTH_SHORT).show();
-                       }
-                        break;
-                    default:
-                }
-                return false;
+            public void onDelete(int position) {
+                mUserList.remove(mUserList.get(position));
+                mAdapter.notifyDataSetChanged();
+                mLabel.getMember().remove(mLabel.getMember().get(position));
             }
         });
-        mLvList.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
+//        mCreator = new SwipeMenuCreator() {
+//            @Override
+//            public void create(SwipeMenu menu) {
+//                SwipeMenuItem deleteItem = new SwipeMenuItem(
+//                        getBaseContext());
+//                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+//                        0x3F, 0x25)));
+//                deleteItem.setWidth(Dp2PxUtil.dip2px(getBaseContext(),90));
+//                deleteItem.setIcon(R.drawable.delete);
+//                menu.addMenuItem(deleteItem);
+//            }
+//        };
+//        mLvList.setMenuCreator(mCreator);
+//        mLvList.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+//                switch (index) {
+//                    case 0:
+//                       if (isChecking) {
+//                           mUserList.remove(mUserList.get(position));
+//                           mAdapter.notifyDataSetChanged();
+//                           mLabel.getMember().remove(mLabel.getMember().get(position));
+//                       } else {
+//                           Toast.makeText(getBaseContext(),"请点击修改后进行修改操作",Toast.LENGTH_SHORT).show();
+//                       }
+//                        break;
+//                    default:
+//                }
+//                return false;
+//            }
+//        });
+//        mLvList.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
         mLvList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

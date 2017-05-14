@@ -55,32 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="1.0px"/>
 
-        <LinearLayout
-            android:id="@+id/friends_ll_group_chat"
-            android:background="@drawable/color_selector"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:padding="2dp"
-                android:src="@drawable/group_chat"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
 
-            <TextView
-                android:textColor="#808080"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:text="群聊"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <View
-            android:background="@color/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1.0px"/>
 
         <ListView
             android:id="@+id/friends_lv_contacts"

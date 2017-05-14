@@ -42,7 +42,7 @@ public class FriendsFragment extends Fragment implements IndexView.OnCharTouchEv
     private List<ContactBean> mContactList;
     private FriendsAdapter mAdapter;
     private View mLabel;
-    private View mGroupChat;
+ //   private View mGroupChat;
 
     @Nullable
     @Override
@@ -51,7 +51,7 @@ public class FriendsFragment extends Fragment implements IndexView.OnCharTouchEv
         mLvContact = (ListView) mLayout.findViewById(R.id.friends_lv_contacts);
         mIndexView = (IndexView) mLayout.findViewById(R.id.friends_iv_index);
         mLabel = mLayout.findViewById(R.id.friends_ll_label);
-        mGroupChat = mLayout.findViewById(R.id.friends_ll_group_chat);
+    //    mGroupChat = mLayout.findViewById(R.id.friends_ll_group_chat);
         mIndexView.setOnLetterTouchedListener(this);
         mLetterWindow = new LetterWindow(getActivity());
         initView();
@@ -66,7 +66,7 @@ public class FriendsFragment extends Fragment implements IndexView.OnCharTouchEv
         mAdapter = new FriendsAdapter((ArrayList<UserBean>) mUserBeans);
         mLvContact.setAdapter(mAdapter);
         mLabel.setOnClickListener(this);
-        mGroupChat.setOnClickListener(this);
+    //    mGroupChat.setOnClickListener(this);
         mAdapter.setmListenrer(new FriendsAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position, View v) {
@@ -110,8 +110,6 @@ public class FriendsFragment extends Fragment implements IndexView.OnCharTouchEv
         switch (v.getId()) {
             case R.id.friends_ll_label:
                 LabelActivity.startActivity(getContext());
-                break;
-            case R.id.friends_ll_group_chat:
                 break;
             default:
         }

@@ -33,6 +33,7 @@
         android:layout_height="wrap_content" />
 
     <LinearLayout
+        android:visibility="gone"
         android:onClick="onAdd"
         android:padding="15dp"
         android:id="@+id/label_detail_ll_add_member"
